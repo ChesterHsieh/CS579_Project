@@ -33,7 +33,7 @@ def main(argv):
 		return
  
 	try:
-		opts, args = getopt.getopt(argv, "", ("username=", "since=", "until=", "querysearch=", "toptweets", "maxtweets="))
+		opts, args = getopt.getopt(argv, "", ["username=", "since=", "until=", "querysearch=", "toptweets=", "maxtweets=","f=",'continue'])
 		
 		tweetCriteria = got.manager.TweetCriteria()
 		
@@ -55,9 +55,11 @@ def main(argv):
 				
 			elif opt == '--maxtweets':
 				tweetCriteria.maxTweets = int(arg)
-				
-		
-		outputFile = codecs.open("output_got.csv", "w+", "utf-8")
+			elif opt == '--f':
+				tweetCriteria.setFileName = arg
+			elif opt == '--continue':
+				tweetCriteria.setContinue = arg
+		outputFile = codecs.open((tweetCriteria.setFileName+".csv"), "w+", "utf-8")
 		
 		outputFile.write('username;date;retweets;favorites;text;geo;mentions;hashtags;id;permalink')
 		
@@ -75,7 +77,7 @@ def main(argv):
 		print('Arguments parser error, try -h' + arg)
 	finally:
 		outputFile.close()
-		print('Done. Output file generated "output_got.csv".')
+		print('Done. Output file generated '+tweetCriteria.setFileName+'.csv')
 
 if __name__ == '__main__':
 	main(sys.argv[1:])
