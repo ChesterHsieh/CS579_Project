@@ -60,7 +60,7 @@ def main(argv):
 			elif opt == '--continue':
 				tweetCriteria.setContinue = arg
 		outputFile = codecs.open((tweetCriteria.setFileName+".csv"), "w+", "utf-8")
-		
+		print(outputFile)
 		outputFile.write('username;date;retweets;favorites;text;geo;mentions;hashtags;id;permalink')
 		
 		print('Searching...\n')
@@ -80,4 +80,4 @@ def main(argv):
 		print('Done. Output file generated '+tweetCriteria.setFileName+'.csv')
 
 if __name__ == '__main__':
-	main(sys.argv[1:])
+    main(['--querysearch', 'beautyblender', '--since', '2017-12-12','--until','2018-02-16', '--f', 'hello'])
