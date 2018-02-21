@@ -26,3 +26,10 @@ class TweetCriteria:
 	def setLang(self, Lang):
 		self.lang = Lang
 		return self
+
+	def setFileName(self,FileName):
+		self.FileName  = FileName
+		return self
+	def setContinue(self,flag_continue):
+		self.flag_continue = flag_continue
+		return self
