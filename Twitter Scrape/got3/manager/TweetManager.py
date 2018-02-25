@@ -1,7 +1,7 @@
 import urllib.request, urllib.parse, urllib.error,urllib.request,urllib.error,urllib.parse,json,re,datetime,sys,http.cookiejar
 from .. import models
 from pyquery import PyQuery
-
+from time import sleep
 class TweetManager:
 	
 	def __init__(self):
@@ -16,9 +16,16 @@ class TweetManager:
 		cookieJar = http.cookiejar.CookieJar()
 
 		active = True
-
+		quiet_counter = 0
 		while active:
 			json = TweetManager.getJsonReponse(tweetCriteria, refreshCursor, cookieJar)
+#            with open('test.json','w+') as j:
+#                j = json
+#            sys.exit()
+
+
+
+
 			if len(json['items_html'].strip()) == 0:
 				break
 
@@ -26,6 +33,7 @@ class TweetManager:
 			tweets = PyQuery(json['items_html'])('div.js-stream-tweet')
 			
 			if len(tweets) == 0:
+				
 				break
 			
 			for tweetHTML in tweets:
@@ -72,7 +80,7 @@ class TweetManager:
 				if receiveBuffer and len(resultsAux) >= bufferLength:
 					receiveBuffer(resultsAux)
 					resultsAux = []
-				
+
 				if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
 					active = False
 					break
@@ -80,6 +88,14 @@ class TweetManager:
 		
 		if receiveBuffer and len(resultsAux) > 0:
 			receiveBuffer(resultsAux)
+		else:
+			print('lenth not enough',len(resultsAux))
+			# if quiet_counter <= 5:
+			# 	sleep(0.5)
+			# 	receiveBuffer(resultsAux)
+			# else:
+			# 	return results
+
 		
 		return results
 	
@@ -102,6 +118,9 @@ class TweetManager:
 			
 		if hasattr(tweetCriteria, 'lang'):
 			urlLang = 'lang=' + tweetCriteria.lang + '&'
+		# if hasattr(tweetCriteria, 'filename'):
+		# 	#Todo
+		# 	break;
 		else:
 			urlLang = ''
 		url = url % (urllib.parse.quote(urlGetData), urlLang, refreshCursor)
@@ -123,6 +142,8 @@ class TweetManager:
 		try:
 			response = opener.open(url)
 			jsonResponse = response.read()
+			if response.status != 200:
+				print(response.status)
 		except:
 			#print("Twitter weird response. Try to see on browser: ", url)
 			print("Twitter weird response. Try to see on browser: https://twitter.com/search?q=%s&src=typd" % urllib.parse.quote(urlGetData))
