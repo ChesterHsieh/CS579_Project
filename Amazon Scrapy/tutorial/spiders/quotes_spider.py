@@ -4,7 +4,7 @@ from collections import defaultdict
 import re
 import json
 from pymongo import MongoClient
-MONGO_HOST= "mongodb://user:0000@ec2-34-205-144-84.compute-1.amazonaws.com/Amazondb"  
+MONGO_HOST= "mongodb://USERNAME:PASSWORD@ec2-34-205-144-84.compute-1.amazonaws.com/Amazondb"  
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
@@ -36,7 +36,7 @@ class QuotesSpider(scrapy.Spider):
                   ,'https://www.amazon.com/gp/search/other/ref=sr_in_y_X?rh=i%3Abeauty%2Cn%3A3760911%2Cn%3A%2111055981%2Cn%3A11058281&bbn=11058281&pickerToList=lbr_brands_browse-bin&indexField=y&ie=UTF8&qid=1519443401'
                   ,'https://www.amazon.com/gp/search/other/ref=sr_in_z_Y?rh=i%3Abeauty%2Cn%3A3760911%2Cn%3A%2111055981%2Cn%3A11058281&bbn=11058281&pickerToList=lbr_brands_browse-bin&indexField=z&ie=UTF8&qid=1519443523']
     
-    proxy='https://api.proxycrawl.com/?token=d0hO_cRvGbNMwPPu4l1kNw&url='
+    proxy='https://api.proxycrawl.com/?token=YOURTOKEN&url='
     for i,url in enumerate(urls_list):
         test = urllib.parse.quote(url)
         urls_list[i]=proxy+test
