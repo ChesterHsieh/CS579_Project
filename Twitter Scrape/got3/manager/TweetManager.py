@@ -19,9 +19,9 @@ class TweetManager:
 		quiet_counter = 0
 		while active:
 			json = TweetManager.getJsonReponse(tweetCriteria, refreshCursor, cookieJar)
-            with open('test.json','w+') as j:
-                j = json
-            sys.exit()
+#            with open('test.json','w+') as j:
+#                j = json
+#            sys.exit()
 
 
 

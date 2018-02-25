@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import sys,getopt,got3,datetime,codecs
-import twitter_stream
 
 got = got3
 
