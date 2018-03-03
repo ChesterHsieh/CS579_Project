@@ -14,7 +14,6 @@ import pandas as pd
 PATH = './private_key.txt'
 
 
-got = got3
 
 def main(argv):
 
@@ -52,7 +51,7 @@ def main(argv):
 	try:
 
 		opts, args = getopt.getopt(argv, "", ["username=", "since=", "until=", "querysearch=", "toptweets=", "maxtweets=","f=","DB"])
-		tweetCriteria = got.manager.TweetCriteria()
+		tweetCriteria = got3.manager.TweetCriteria()
 		
 		for opt,arg in opts:
 			if opt == '--username':
@@ -117,9 +116,9 @@ def main(argv):
 		
 	
 		if hasattr(tweetCriteria,'DB'):
-			got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer_DB)
+			got3.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer_DB)
 		else:
-			got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
+			got3.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
 		
 
 	except arg:
