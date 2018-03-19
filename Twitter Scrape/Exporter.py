@@ -108,7 +108,7 @@ def main(argv):
 		else:
 			print("DB conecting....")
 			dict_key =  get_setting(PATH)
-			MONGO_HOST= "mongodb://{0}:{1}@ec2-34-205-144-84.compute-1.amazonaws.com/twitterdb".format(dict_key['mongo_db_user'],dict_key['mongo_db_password']) # assuming you have mongoDB installed locally
+			MONGO_HOST= "mongodb://{0}:{1}@ec2-52-87-161-70.compute-1.amazonaws.com/twitterdb".format(dict_key['mongo_db_user'],dict_key['mongo_db_password']) # assuming you have mongoDB installed locally
 			client = MongoClient(MONGO_HOST)
 			db = client.twitterdb
 			
