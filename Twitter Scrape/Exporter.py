@@ -98,7 +98,8 @@ def main(argv):
 	
 		def receiveBuffer_DB(tweets):
 			for t in tweets:
-				db.hello.insert_one(vars(t))
+				t.product_name = tweetCriteria.querySearch
+				db.eyeshadow_tw.insert_one(vars(t))
 			print('More %d saved on file...\n' % len(tweets))
 			
 		if hasattr(tweetCriteria,'FileName'):
