@@ -43,10 +43,12 @@ SAVE_TWEET_PATH = './Data/tweet/'
 SAVE_USER_PATH = './Data/user/'
 
 # settings for mongodb
-MONGODB_SERVER = "mongodb://{0}:{1}@ec2-52-87-161-70.compute-1.amazonaws.com".format(dict_key['mongo_db_user'],dict_key['mongo_db_password']) # assuming you have mongoDB installed locally
+# MONGODB_HOST = "mongodb://{0}:{1}@ec2-52-87-161-70.compute-1.amazonaws.com".format(dict_key['mongo_db_user'],dict_key['mongo_db_password']) # assuming you have mongoDB installed locally
+MONGODB_HOST = "ec2-52-87-161-70.compute-1.amazonaws.com"
 MONGODB_PORT = 27017
+MONGODB_USER = dict_key['mongo_db_user']
+MONGODB_PASSWORD = dict_key['mongo_db_password']
 MONGODB_DB = "twitterdb"        # database name to save the crawled data
 MONGODB_TWEET_COLLECTION = "tweet_collect" # collection name to save tweets
 MONGODB_USER_COLLECTION = "user_collect"   # collection name to save users
-print(MONGODB_SERVER)
 
