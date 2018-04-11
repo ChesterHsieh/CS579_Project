@@ -71,8 +71,8 @@ def get_soup(url):
     test = urllib.parse.quote(url)
     url_proxy=proxy+test
 
-    logging.debug('-> to Amazon : {}'.format(url_proxy))
-    out = requests.get(url_proxy, headers={'user-agent':str(ua.random)})
+    logging.debug('-> to Amazon : {}'.format(url))
+    out = requests.get(url, headers={'user-agent':str(ua.random)})
     assert out.status_code == 200
     soup = BeautifulSoup(out.content, 'html.parser')
     if 'captcha' in str(soup):
