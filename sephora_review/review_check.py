@@ -24,7 +24,7 @@ df =  pd.DataFrame(list(cursor))
 i=0
 data_container = []
 data_dic={}
-for n in range(2708,len(df)):
+for n in range(len(df)):
     bazzarvoice = BazaarvoiceAPI('rwbw526r2e7spptqd2qzbkp7', str(df['p_id'].iloc[n]))
     for prod in bazzarvoice.get_product():
     	i+=1
