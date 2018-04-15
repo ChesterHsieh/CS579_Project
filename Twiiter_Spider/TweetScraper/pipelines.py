@@ -18,11 +18,12 @@ class SaveToMongoPipeline(object):
 
     ''' pipeline that save data to mongodb '''
     def __init__(self):
-        MONGO_HOST = settings['MONGODB_SERVER']
-        MongoClient = pymongo.MongoClient(MONGO_HOST)
-#         connection = pymongo.MongoClient(settings['MONGODB_SERVER'], settings['MONGODB_PORT'])
-# MONGO_HOST
-        db = MongoClient.settings['MONGODB_DB']
+        ### Reference
+        MONGO_HOST_TW= "mongodb://{0}:{1}@ec2-52-87-161-70.compute-1.amazonaws.com/twitterdb".format(settings['MONGODB_USER'],settings['MONGODB_PASSWORD']) # assuming you have mongoDB installed locally
+        client_tw = pymongo.MongoClient(MONGO_HOST_TW)
+        db = client_tw[settings['MONGODB_DB']]
+            # connection = pymongo.MongoClient(settings['MONGODB_SERVER'], settings['MONGODB_PORT'])
+
         self.tweetCollection = db[settings['MONGODB_TWEET_COLLECTION']]
         self.userCollection = db[settings['MONGODB_USER_COLLECTION']]
         self.tweetCollection.ensure_index([('ID', pymongo.ASCENDING)], unique=True, dropDups=True)
